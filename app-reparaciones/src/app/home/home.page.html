@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recepción</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/taller">
+        VER TALLER 🛠️
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <div style="padding: 20px 20px 0 20px;">
+    <h3 style="margin-bottom: 10px; color: #444;">Datos de Ingreso</h3>
+
+    <ion-list style="border-radius: 10px; overflow: hidden;">
+      <ion-item>
+        <ion-input label="Cliente" labelPlacement="floating" [(ngModel)]="cliente" placeholder="Ej: Juan Pérez"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Equipo/Modelo" labelPlacement="floating" [(ngModel)]="equipo" placeholder="Ej: Samsung A50"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" label="Costo ($)" labelPlacement="floating" [(ngModel)]="costo"></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <app-pago-movil
+    [totalUsd]="costo"
+    [tasaBcv]="60.5"
+    (onPagoReportado)="procesarPago($event)">
+  </app-pago-movil>
+
+</ion-content>

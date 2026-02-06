@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gestión de Taller</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-refresher slot="fixed" (ionRefresh)="cargarDatos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div style="padding: 15px;">
+    <h3 style="margin-left: 10px; color: #555;">Equipos en Custodia: {{ listaReparaciones.length }}</h3>
+
+    <ion-list style="border-radius: 15px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+
+      <ion-item
+        *ngFor="let rep of listaReparaciones"
+        lines="full"
+        detail="true"
+        button="true"
+        (click)="abrirOpciones(rep)">
+
+        <div style="width: 100%; padding: 12px 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+
+            <ion-badge [color]="rep.estado === 'LISTO' ? 'success' : (rep.estado === 'ENTREGADO' ? 'medium' : 'warning')">
+              {{ rep.estado }}
+            </ion-badge>
+
+            <span style="font-size: 0.8em; color: #888;">ID: #{{ rep.id }}</span>
+          </div>
+
+          <h2 style="font-size: 1.1em; font-weight: bold; color: #333;">{{ rep.equipoModelo }}</h2>
+          <p style="color: #666;">👤 {{ rep.clienteNombre }}</p>
+          <p style="font-size: 0.85em; margin-top: 5px; color: #888;">
+            📅 {{ rep.createdAt | date:'dd/MM/yy h:mm a' }}
+          </p>
+        </div>
+      </ion-item>
+      <ion-item *ngIf="listaReparaciones.length === 0">
+        <div style="text-align: center; width: 100%; padding: 30px;">
+          <p>🏁 Todo limpio. No hay equipos pendientes.</p>
+        </div>
+      </ion-item>
+
+    </ion-list>
+  </div>
+</ion-content>

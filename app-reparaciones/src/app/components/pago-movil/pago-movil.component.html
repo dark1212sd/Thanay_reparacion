@@ -1,0 +1,28 @@
+<div class="card-pago">
+  <div class="header-monto">
+    <span class="label">Total a Pagar</span>
+    <h2 class="monto-bs">Bs. {{ totalBolivares | number:'1.2-2' }}</h2>
+    <small class="monto-usd">Ref: ${{ totalUsd }} (Tasa: {{ tasaBcv }})</small>
+  </div>
+
+  <div class="datos-bancarios">
+    <p>Datos para el Pago Móvil:</p>
+    <div class="dato-row" (click)="copiarDato(datosComercio.telefono)">
+      <label>Teléfono:</label>
+      <span>{{ datosComercio.telefono }} 📋</span>
+    </div>
+    <div class="dato-row" (click)="copiarDato(datosComercio.cedula)">
+      <label>C.I / RIF:</label>
+      <span>{{ datosComercio.cedula }} 📋</span>
+    </div>
+    <div class="dato-row">
+      <label>Banco:</label>
+      <span>{{ datosComercio.banco }}</span>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <input type="tel" [(ngModel)]="pago.referencia" placeholder="Últimos 4 dígitos de ref.">
+    <button (click)="reportarPago()" [disabled]="!pago.referencia">REPORTAR PAGO</button>
+  </div>
+</div>

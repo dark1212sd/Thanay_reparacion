@@ -1,0 +1,7 @@
+{
+  "name": "app-reparaciones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
