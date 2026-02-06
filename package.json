@@ -1,0 +1,9 @@
+{
+  "name": "sistema-taller-root",
+  "version": "1.0.0",
+  "scripts": {
+    "instalar-todo": "npm install --prefix backend-api && npm install --prefix app-reparaciones",
+    "dev:backend": "npm run dev --prefix backend-api",
+    "dev:app": "npm run start --prefix app-reparaciones"
+  }
+}
